@@ -18,12 +18,11 @@
 
     if (!toLocaleStringSupportsLocales()) {
         var replaceSeparators = function(sNum, separators) {
-            if (separators && separators.decimal) {
-                sNum = sNum.replace(/\./, separators.decimal);
-            }
+            var sNumParts = sNum.split('.');
             if (separators && separators.thousands) {
-                sNum = sNum.replace(/\B(?=(\d{3})+(?!\d))/g, separators.thousands);
+                sNumParts[0] = sNumParts[0].replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separators.thousands);
             }
+            sNum = sNumParts.join(separators.decimal);
 
             return sNum;
         };
@@ -39,27 +38,48 @@
 
         var commaThousDotDec = function(sNum) {
             var separators = {
+                decimal: '.',
                 thousands: ','
             };
 
             return replaceSeparators(sNum, separators);
         };
 
-        var transformForLocale = {
-            CA: dotThousCommaDec,
-            IN: dotThousCommaDec,
-            US: commaThousDotDec
+        var spaceThousCommaDec = function(sNum) {
+            var seperators = {
+                decimal: ',',
+                thousands: '\u00A0'
+            };
+
+            return replaceSeparators(sNum, seperators);
         };
 
-        Number.prototype.toLocaleString = function(locale) {
+        var transformForLocale = {
+            ca: dotThousCommaDec,
+            in: dotThousCommaDec,
+            us: commaThousDotDec,
+            it: dotThousCommaDec,
+            fr: spaceThousCommaDec
+        };
+
+        Number.prototype.toLocaleString = function(locale, options) {
+            if (locale && locale.length < 2)
+                throw new RangeError("Invalid language tag: " + locale);
+
             var sNum;
 
-            sNum = this.toString();
+            if (options && options.minimumFractionDigits) {
+                sNum = this.toFixed(options.minimumFractionDigits);
+            } else {
+                sNum = this.toString();
+            }
+
+            locale = locale && locale.toLowerCase().match(/^\w+/);
 
             if (transformForLocale.hasOwnProperty(locale)) {
-                sNum = transformForLocale[locale](sNum);
+                sNum = transformForLocale[locale](sNum, options);
             } else {
-                sNum = transformForLocale['US'](sNum);
+                sNum = transformForLocale['us'](sNum, options);
             }
 
             return sNum;
