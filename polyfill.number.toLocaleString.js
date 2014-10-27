@@ -59,8 +59,19 @@
             in: dotThousCommaDec,
             us: commaThousDotDec,
             it: dotThousCommaDec,
-            fr: spaceThousCommaDec
+            fr: spaceThousCommaDec,
+            de: dotThousCommaDec,
+            "de-DE": dotThousCommaDec,
+            "de-AT": dotThousCommaDec,
+            "de-CH": dotThousCommaDec,
+            "de-LI": dotThousCommaDec,
+            "de-BE": dotThousCommaDec
         };
+        
+        var currencyCodes = {
+	        "eur": "€",
+	        "usd": "$"
+        }
 
         Number.prototype.toLocaleString = function(locale, options) {
             if (locale && locale.length < 2)
@@ -80,6 +91,14 @@
                 sNum = transformForLocale[locale](sNum, options);
             } else {
                 sNum = transformForLocale['us'](sNum, options);
+            }
+            
+            if(options.currency) {
+	            if(options.currencyDisplay=="code") {
+		            sNum+=" "+options.currency.toUpperCase();
+	            } else {
+		            sNum+=" "+currencyCodes[options.currency.toLowerCase()];
+	            }
             }
 
             return sNum;
