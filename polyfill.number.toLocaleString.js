@@ -93,7 +93,7 @@
                 sNum = transformForLocale['us'](sNum, options);
             }
             
-            if(options.currency) {
+            if(options && options.currency) {
 	            if(options.currencyDisplay=="code") {
 		            sNum+=" "+options.currency.toUpperCase();
 	            } else {
