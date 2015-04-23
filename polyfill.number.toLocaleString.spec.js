@@ -21,21 +21,7 @@ describe('number.toLocaleString(locale) polyfill', function() {
         expect(typeof (num.toLocaleString(locale))).toBe('string');
     });
 
-    it('returns a string formatted in Canadian style (1.234,5) when passed CA', function() {
-        var num = 1234.5;
-        var locale = 'CA';
-
-        expect(num.toLocaleString(locale)).toBe('1.234,5');
-    });
-
-    it('returns a string formatted in Indian style (1.234,5) when passed IN', function() {
-        var num = 1234.5;
-        var locale = 'IN';
-
-        expect(num.toLocaleString(locale)).toBe('1.234,5');
-    });
-
-    it('returns a string formatted in FR style (1,234.5) when passed FR', function() {
+    it('returns a string formatted in FR style (1\u00A0234.5) when passed FR', function() {
         var num = 1234.5;
         var locale = 'FR';
 
@@ -94,5 +80,22 @@ describe('number.toLocaleString(locale) polyfill', function() {
         expect(num.toLocaleString()).toBe('1,234.5');
         expect(num.toLocaleString('MX')).toBe('1,234.5');
         expect(num.toLocaleString('AU')).toBe('1,234.5');
+    });
+
+    it('returns currency properly formatted for the locale specified', function() {
+        var num = 1234.56;
+        var style = "currency";
+        var currency = "USD";
+        var currencyDisplay = "symbol";
+
+        expect(num.toLocaleString("en-US", {
+            style: style,
+            currency: currency
+        })).toBe("$1,234.56");
+
+        expect(num.toLocaleString("de-DE", {
+            style: style,
+            currency: currency
+        })).toBe("1.234,56 $");
     });
 });

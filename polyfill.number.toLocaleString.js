@@ -27,6 +27,29 @@
             return sNum;
         };
 
+        var renderFormat = function(template, props) {
+            for (var prop in props) {
+                template = template.replace("{{" + prop + "}}", props[prop]);
+            }
+            
+            return template;
+        };
+
+        var mapMatch = function(map, locale) {
+            var match = locale;
+            var language = locale && locale.toLowerCase().match(/^\w+/);
+
+            if (!map.hasOwnProperty(locale)) {
+                if (map.hasOwnProperty(language)) {
+                    match = language;
+                } else {
+                    match = "en";
+                }
+            }
+
+            return map[match];
+        };
+
         var dotThousCommaDec = function(sNum) {
             var separators = {
                 decimal: ',',
@@ -55,9 +78,7 @@
         };
 
         var transformForLocale = {
-            ca: dotThousCommaDec,
-            in: dotThousCommaDec,
-            us: commaThousDotDec,
+            en: commaThousDotDec,
             it: dotThousCommaDec,
             fr: spaceThousCommaDec,
             de: dotThousCommaDec,
@@ -67,11 +88,29 @@
             "de-LI": dotThousCommaDec,
             "de-BE": dotThousCommaDec
         };
+
+        var currencyFormatMap = {
+            en: "pre",
+            it: "post",
+            fr: "post",
+            de: "post",
+            "de-DE": "post",
+            "de-AT": "prespace",
+            "de-CH": "prespace",
+            "de-LI": "post",
+            "de-BE": "post"
+        };
         
-        var currencyCodes = {
+        var currencySymbols = {
 	        "eur": "€",
 	        "usd": "$"
         }
+
+        var currencyFormats = {
+            pre: "{{code}}{{num}}",
+            post: "{{num}} {{code}}",
+            prespace: "{{code}} {{num}}"
+        };
 
         Number.prototype.toLocaleString = function(locale, options) {
             if (locale && locale.length < 2)
@@ -85,19 +124,20 @@
                 sNum = this.toString();
             }
 
-            locale = locale && locale.toLowerCase().match(/^\w+/);
+            sNum = mapMatch(transformForLocale, locale)(sNum, options);
 
-            if (transformForLocale.hasOwnProperty(locale)) {
-                sNum = transformForLocale[locale](sNum, options);
-            } else {
-                sNum = transformForLocale['us'](sNum, options);
-            }
-            
-            if(options && options.currency) {
-	            if(options.currencyDisplay=="code") {
-		            sNum+=" "+options.currency.toUpperCase();
+            if(options && options.currency && options.style === "currency") {
+                var format = currencyFormats[mapMatch(currencyFormatMap, locale)];
+	            if(options.currencyDisplay === "code") {
+                    sNum = renderFormat(format, {
+                        num: sNum,
+                        code: options.currency.toUpperCase()
+                    });
 	            } else {
-		            sNum+=" "+currencyCodes[options.currency.toLowerCase()];
+                    sNum = renderFormat(format, {
+                        num: sNum,
+                        code: currencySymbols[options.currency.toLowerCase()]
+                    });
 	            }
             }
 
