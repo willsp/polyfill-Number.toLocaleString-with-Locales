@@ -31,7 +31,7 @@
             for (var prop in props) {
                 template = template.replace("{{" + prop + "}}", props[prop]);
             }
-            
+
             return template;
         };
 
@@ -86,7 +86,9 @@
             "de-AT": dotThousCommaDec,
             "de-CH": dotThousCommaDec,
             "de-LI": dotThousCommaDec,
-            "de-BE": dotThousCommaDec
+            "de-BE": dotThousCommaDec,
+            ro: dotThousCommaDec,
+            "ro-RO": dotThousCommaDec,
         };
 
         var currencyFormatMap = {
@@ -98,12 +100,15 @@
             "de-AT": "prespace",
             "de-CH": "prespace",
             "de-LI": "post",
-            "de-BE": "post"
+            "de-BE": "post",
+            ro: "post",
+            "ro-RO": "post"
         };
-        
+
         var currencySymbols = {
 	        "eur": "€",
-	        "usd": "$"
+	        "usd": "$",
+          "ron": "RON"
         }
 
         var currencyFormats = {
