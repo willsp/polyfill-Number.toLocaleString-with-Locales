@@ -1,0 +1,16 @@
+{
+  "name": "number-to-locale-string",
+  "version": "1.0.0",
+  "description": "A polyfill to add support for Number.toLocaleString with locales to browsers that don't support it.",
+  "main": "polyfill.number.toLocaleString.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/willsp/polyfill-Number.toLocaleString-with-Locales.git"
+  },
+  "author": "Phillip Wills <phil@phillipwills.com> (http://got.phillipwills.com/)",
+  "license": "Public Domain",
+  "bugs": {
+    "url": "https://github.com/willsp/polyfill-Number.toLocaleString-with-Locales/issues"
+  },
+  "homepage": "https://github.com/willsp/polyfill-Number.toLocaleString-with-Locales"
+}
