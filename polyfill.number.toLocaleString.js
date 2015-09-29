@@ -88,7 +88,7 @@
             "de-LI": dotThousCommaDec,
             "de-BE": dotThousCommaDec,
             ro: dotThousCommaDec,
-            "ro-RO": dotThousCommaDec,
+            "ro-RO": dotThousCommaDec
         };
 
         var currencyFormatMap = {
@@ -108,8 +108,10 @@
         var currencySymbols = {
 	        "eur": "€",
 	        "usd": "$",
-          "ron": "RON"
-        }
+            "ron": "RON",
+	        "krw": "₩",
+	        "jpy": "￥"
+        };
 
         var currencyFormats = {
             pre: "{{code}}{{num}}",
