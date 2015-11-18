@@ -18,6 +18,7 @@ describe('number.toLocaleString(locale) polyfill', function() {
     it('returns a string', function() {
         var num = 123456;
         var locale = 'CA';
+        
         expect(typeof (num.toLocaleString(locale))).toBe('string');
     });
 
@@ -49,12 +50,12 @@ describe('number.toLocaleString(locale) polyfill', function() {
         expect(num.toLocaleString(locale)).toBe('1.234,5');
     });
 
-	it('returns a string formatted in KR style (1,234.5) when passed KR', function() {
-		var num = 1234.5;
-		var locale = 'KR';
+    it('returns a string formatted in KR style (1,234.5) when passed KR', function() {
+        var num = 1234.5;
+        var locale = 'KR';
 
-		expect(num.toLocaleString(locale)).toBe('1,234.5');
-	});
+        expect(num.toLocaleString(locale)).toBe('1,234.5');
+    });
 
     it('throws when the language tag does not conform to the standard', function() {
         var num = 1234.5;
@@ -112,15 +113,15 @@ describe('number.toLocaleString(locale) polyfill', function() {
             currency: currency
         })).toBe("1.234,56 $");
 
-	    expect(num.toLocaleString("ko-KR", {
-		    style: style,
-		    currency: "krw"
-	    })).toBe("₩1,234.56");
+        expect(num.toLocaleString("ko-KR", {
+            style: style,
+            currency: "krw"
+        })).toBe("₩1,234.56");
 
-	    expect(num.toLocaleString("ja-JP", {
-		    style: style,
-		    currency: "jpy"
-	    })).toBe("￥1,234.56");
+        expect(num.toLocaleString("ja-JP", {
+            style: style,
+            currency: "jpy"
+        })).toBe("￥1,234.56");
 
         expect(num.toLocaleString("hu", {
             style: style,

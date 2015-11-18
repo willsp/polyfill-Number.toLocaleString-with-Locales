@@ -110,12 +110,12 @@
         };
 
         var currencySymbols = {
-	        "eur": "€",
-	        "usd": "$",
+            "eur": "€",
+            "usd": "$",
             "ron": "RON",
-	        "krw": "₩",
-	        "jpy": "￥",
-          "huf": "HUF"
+            "krw": "₩",
+            "jpy": "￥",
+            "huf": "HUF"
         };
 
         var currencyFormats = {
@@ -140,17 +140,17 @@
 
             if(options && options.currency && options.style === "currency") {
                 var format = currencyFormats[mapMatch(currencyFormatMap, locale)];
-	            if(options.currencyDisplay === "code") {
+                if(options.currencyDisplay === "code") {
                     sNum = renderFormat(format, {
                         num: sNum,
                         code: options.currency.toUpperCase()
                     });
-	            } else {
+                } else {
                     sNum = renderFormat(format, {
                         num: sNum,
                         code: currencySymbols[options.currency.toLowerCase()]
                     });
-	            }
+                }
             }
 
             return sNum;
