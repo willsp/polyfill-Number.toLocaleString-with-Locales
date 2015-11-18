@@ -11,7 +11,7 @@ describe('number.toLocaleString(locale) polyfill', function() {
         function testLocale() {
             return (num).toLocaleString(locale);
         }
-        
+
         expect(testLocale).not.toThrow();
     });
 
@@ -83,10 +83,17 @@ describe('number.toLocaleString(locale) polyfill', function() {
 
     it('returns a string formatted in US style (1,234.5) by default', function() {
         var num = 1234.5;
-        
+
         expect(num.toLocaleString()).toBe('1,234.5');
         expect(num.toLocaleString('MX')).toBe('1,234.5');
         expect(num.toLocaleString('AU')).toBe('1,234.5');
+    });
+
+    it('returns a string formatted in Hungarian style (1 234,56) by default', function() {
+        var num = 1234.56;
+
+        expect(num.toLocaleString('hu')).toBe('1\u00A0234,56');
+        expect(num.toLocaleString('hu-HU')).toBe('1\u00A0234,56');
     });
 
     it('returns currency properly formatted for the locale specified', function() {
@@ -114,5 +121,15 @@ describe('number.toLocaleString(locale) polyfill', function() {
 		    style: style,
 		    currency: "jpy"
 	    })).toBe("￥1,234.56");
+
+        expect(num.toLocaleString("hu", {
+            style: style,
+            currency: "huf"
+        })).toBe("1\u00A0234,56 HUF");
+
+        expect(num.toLocaleString("hu-HU", {
+            style: style,
+            currency: "huf"
+        })).toBe("1\u00A0234,56 HUF");
     });
 });
