@@ -11,13 +11,14 @@ describe('number.toLocaleString(locale) polyfill', function() {
         function testLocale() {
             return (num).toLocaleString(locale);
         }
-        
+
         expect(testLocale).not.toThrow();
     });
 
     it('returns a string', function() {
         var num = 123456;
         var locale = 'CA';
+        
         expect(typeof (num.toLocaleString(locale))).toBe('string');
     });
 
@@ -49,12 +50,12 @@ describe('number.toLocaleString(locale) polyfill', function() {
         expect(num.toLocaleString(locale)).toBe('1.234,5');
     });
 
-	it('returns a string formatted in KR style (1,234.5) when passed KR', function() {
-		var num = 1234.5;
-		var locale = 'KR';
+    it('returns a string formatted in KR style (1,234.5) when passed KR', function() {
+        var num = 1234.5;
+        var locale = 'KR';
 
-		expect(num.toLocaleString(locale)).toBe('1,234.5');
-	});
+        expect(num.toLocaleString(locale)).toBe('1,234.5');
+    });
 
     it('throws when the language tag does not conform to the standard', function() {
         var num = 1234.5;
@@ -83,10 +84,17 @@ describe('number.toLocaleString(locale) polyfill', function() {
 
     it('returns a string formatted in US style (1,234.5) by default', function() {
         var num = 1234.5;
-        
+
         expect(num.toLocaleString()).toBe('1,234.5');
         expect(num.toLocaleString('MX')).toBe('1,234.5');
         expect(num.toLocaleString('AU')).toBe('1,234.5');
+    });
+
+    it('returns a string formatted in Hungarian style (1 234,56) by default', function() {
+        var num = 1234.56;
+
+        expect(num.toLocaleString('hu')).toBe('1\u00A0234,56');
+        expect(num.toLocaleString('hu-HU')).toBe('1\u00A0234,56');
     });
 
     it('returns currency properly formatted for the locale specified', function() {
@@ -105,14 +113,24 @@ describe('number.toLocaleString(locale) polyfill', function() {
             currency: currency
         })).toBe("1.234,56 $");
 
-	    expect(num.toLocaleString("ko-KR", {
-		    style: style,
-		    currency: "krw"
-	    })).toBe("₩1,234.56");
+        expect(num.toLocaleString("ko-KR", {
+            style: style,
+            currency: "krw"
+        })).toBe("₩1,234.56");
 
-	    expect(num.toLocaleString("ja-JP", {
-		    style: style,
-		    currency: "jpy"
-	    })).toBe("￥1,234.56");
+        expect(num.toLocaleString("ja-JP", {
+            style: style,
+            currency: "jpy"
+        })).toBe("￥1,234.56");
+
+        expect(num.toLocaleString("hu", {
+            style: style,
+            currency: "huf"
+        })).toBe("1\u00A0234,56 HUF");
+
+        expect(num.toLocaleString("hu-HU", {
+            style: style,
+            currency: "huf"
+        })).toBe("1\u00A0234,56 HUF");
     });
 });

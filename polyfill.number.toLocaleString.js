@@ -88,7 +88,9 @@
             "de-LI": dotThousCommaDec,
             "de-BE": dotThousCommaDec,
             ro: dotThousCommaDec,
-            "ro-RO": dotThousCommaDec
+            "ro-RO": dotThousCommaDec,
+            hu: spaceThousCommaDec,
+            "hu-HU": spaceThousCommaDec
         };
 
         var currencyFormatMap = {
@@ -102,15 +104,18 @@
             "de-LI": "post",
             "de-BE": "post",
             ro: "post",
-            "ro-RO": "post"
+            "ro-RO": "post",
+            hu: "post",
+            "hu-HU": "post"
         };
 
         var currencySymbols = {
-	        "eur": "€",
-	        "usd": "$",
+            "eur": "€",
+            "usd": "$",
             "ron": "RON",
-	        "krw": "₩",
-	        "jpy": "￥"
+            "krw": "₩",
+            "jpy": "￥",
+            "huf": "HUF"
         };
 
         var currencyFormats = {
@@ -135,17 +140,17 @@
 
             if(options && options.currency && options.style === "currency") {
                 var format = currencyFormats[mapMatch(currencyFormatMap, locale)];
-	            if(options.currencyDisplay === "code") {
+                if(options.currencyDisplay === "code") {
                     sNum = renderFormat(format, {
                         num: sNum,
                         code: options.currency.toUpperCase()
                     });
-	            } else {
+                } else {
                     sNum = renderFormat(format, {
                         num: sNum,
                         code: currencySymbols[options.currency.toLowerCase()]
                     });
-	            }
+                }
             }
 
             return sNum;
