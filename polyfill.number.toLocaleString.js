@@ -120,8 +120,8 @@
             "krw": "₩",
             "jpy": "￥",
             "huf": "HUF",
-            "nok": "kr.",
-            "dkk": "kr.",
+            "nok": "kr",
+            "dkk": "kr",
         };
 
         var currencyFormats = {

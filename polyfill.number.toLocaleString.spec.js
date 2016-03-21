@@ -151,11 +151,11 @@ describe('number.toLocaleString(locale) polyfill', function() {
         expect(num.toLocaleString("da-DK", {
             style: style,
             currency: "DKK"
-        })).toBe("1.234,56 kr.");
+        })).toBe("1.234,56 kr");
 
         expect(num.toLocaleString("nb-NO", {
             style: style,
             currency: "NOK"
-        })).toBe("1\u00A0234,56 kr.");
+        })).toBe("1\u00A0234,56 kr");
     });
 });
