@@ -57,6 +57,21 @@ describe('number.toLocaleString(locale) polyfill', function() {
         expect(num.toLocaleString(locale)).toBe('1,234.5');
     });
 
+
+    it('returns a string formatted in DK style (1.234,5) when passed da-DK', function() {
+        var num = 1234.5;
+        var locale = 'da-DK';
+
+        expect(num.toLocaleString(locale)).toBe('1.234,5');
+    });
+
+    it('returns a string formatted in NO style (1 234,5) when passed nb-NO', function() {
+        var num = 1234.5;
+        var locale = 'nb-NO';
+
+        expect(num.toLocaleString(locale)).toBe('1\u00A0234,5');
+    });
+
     it('throws when the language tag does not conform to the standard', function() {
         var num = 1234.5;
         var locale = 'i';
@@ -132,5 +147,15 @@ describe('number.toLocaleString(locale) polyfill', function() {
             style: style,
             currency: "huf"
         })).toBe("1\u00A0234,56 HUF");
+
+        expect(num.toLocaleString("da-DK", {
+            style: style,
+            currency: "DKK"
+        })).toBe("1.234,56 kr.");
+
+        expect(num.toLocaleString("nb-NO", {
+            style: style,
+            currency: "NOK"
+        })).toBe("1\u00A0234,56 kr.");
     });
 });
