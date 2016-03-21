@@ -92,7 +92,7 @@
             hu: spaceThousCommaDec,
             "hu-HU": spaceThousCommaDec,
             "da-DK": dotThousCommaDec,
-            "nb-NO": spaceThousCommaDec,
+            "nb-NO": spaceThousCommaDec
         };
 
         var currencyFormatMap = {
@@ -110,7 +110,7 @@
             hu: "post",
             "hu-HU": "post",
             "da-DK": "post",
-            "nb-NO": "post",
+            "nb-NO": "post"
         };
 
         var currencySymbols = {
@@ -121,7 +121,7 @@
             "jpy": "￥",
             "huf": "HUF",
             "nok": "kr",
-            "dkk": "kr",
+            "dkk": "kr"
         };
 
         var currencyFormats = {
