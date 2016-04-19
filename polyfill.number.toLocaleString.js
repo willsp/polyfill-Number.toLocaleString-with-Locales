@@ -82,6 +82,8 @@
                 decimal: '.',
                 thousands: '\u0027'
             }
+            
+            return replaceSeperators(sNum, seperators);
         };
 
         var transformForLocale = {
