@@ -82,7 +82,7 @@
                 decimal: '.',
                 thousands: '\u0027'
             }
-        }
+        };
 
         var transformForLocale = {
             en: commaThousDotDec,
