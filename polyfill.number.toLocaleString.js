@@ -76,6 +76,13 @@
 
             return replaceSeparators(sNum, seperators);
         };
+        
+        var apostrophThousDotDec = function(sNum) {
+            var seperators = {
+                decimal: '.',
+                thousands: '\u0027'
+            }
+        }
 
         var transformForLocale = {
             en: commaThousDotDec,
@@ -84,8 +91,8 @@
             de: dotThousCommaDec,
             "de-DE": dotThousCommaDec,
             "de-AT": dotThousCommaDec,
-            "de-CH": dotThousCommaDec,
-            "de-LI": dotThousCommaDec,
+            "de-CH": apostrophThousDotDec,
+            "de-LI": apostrophThousDotDec,
             "de-BE": dotThousCommaDec,
             ro: dotThousCommaDec,
             "ro-RO": dotThousCommaDec,
