@@ -83,7 +83,7 @@
                 thousands: '\u0027'
             };
             
-            return replaceSeperators(sNum, seperators);
+            return replaceSeparators(sNum, seperators);
         };
 
         var transformForLocale = {
