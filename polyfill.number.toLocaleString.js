@@ -81,7 +81,7 @@
             var seperators = {
                 decimal: '.',
                 thousands: '\u0027'
-            }
+            };
             
             return replaceSeperators(sNum, seperators);
         };
