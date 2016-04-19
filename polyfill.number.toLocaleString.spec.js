@@ -42,6 +42,13 @@ describe('number.toLocaleString(locale) polyfill', function() {
 
         expect(num.toLocaleString(locale)).toBe('1.234,5');
     });
+    
+    it("returns a string formatted in de-CH style (1'234.5) when passed de-CH", function() {
+        var num = 1234.5;
+        var locale = 'de-CH';
+        
+        expect(num.toLocaleString(locale)).toBe("1'234.5");
+    } 
 
     it('returns a formatted string based only on the language code in complex locale codes', function() {
         var num = 1234.5;
