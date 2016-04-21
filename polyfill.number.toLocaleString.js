@@ -99,7 +99,9 @@
             ro: dotThousCommaDec,
             "ro-RO": dotThousCommaDec,
             hu: spaceThousCommaDec,
-            "hu-HU": spaceThousCommaDec
+            "hu-HU": spaceThousCommaDec,
+            "da-DK": dotThousCommaDec,
+            "nb-NO": spaceThousCommaDec
         };
 
         var currencyFormatMap = {
@@ -115,7 +117,9 @@
             ro: "post",
             "ro-RO": "post",
             hu: "post",
-            "hu-HU": "post"
+            "hu-HU": "post",
+            "da-DK": "post",
+            "nb-NO": "post"
         };
 
         var currencySymbols = {
@@ -124,7 +128,9 @@
             "ron": "RON",
             "krw": "₩",
             "jpy": "￥",
-            "huf": "HUF"
+            "huf": "HUF",
+            "nok": "kr",
+            "dkk": "kr"
         };
 
         var currencyFormats = {
