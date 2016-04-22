@@ -18,7 +18,7 @@ describe('number.toLocaleString(locale) polyfill', function() {
     it('returns a string', function() {
         var num = 123456;
         var locale = 'CA';
-        
+
         expect(typeof (num.toLocaleString(locale))).toBe('string');
     });
 
@@ -143,17 +143,17 @@ describe('number.toLocaleString(locale) polyfill', function() {
         expect(num.toLocaleString("ja-JP", {
             style: style,
             currency: "jpy"
-        })).toBe("￥1,234.56");
+        })).toBe("¥1,234.56");
 
         expect(num.toLocaleString("hu", {
             style: style,
             currency: "huf"
-        })).toBe("1\u00A0234,56 HUF");
+        })).toBe("1\u00A0234,56 Ft");
 
         expect(num.toLocaleString("hu-HU", {
             style: style,
             currency: "huf"
-        })).toBe("1\u00A0234,56 HUF");
+        })).toBe("1\u00A0234,56 Ft");
 
         expect(num.toLocaleString("da-DK", {
             style: style,
@@ -164,5 +164,15 @@ describe('number.toLocaleString(locale) polyfill', function() {
             style: style,
             currency: "NOK"
         })).toBe("1\u00A0234,56 kr");
+
+        expect(num.toLocaleString("ph-PH", {
+            style: style,
+            currency: "php"
+        })).toBe("₱1,234.56");
+
+        expect(num.toLocaleString("vi-VN", {
+            style: style,
+            currency: "vnd"
+        })).toBe("₫1,234.56");
     });
 });
