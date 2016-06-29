@@ -42,11 +42,11 @@ describe('number.toLocaleString(locale) polyfill', function() {
 
         expect(num.toLocaleString(locale)).toBe('1.234,5');
     });
-    
+
     it("returns a string formatted in de-CH style (1'234.5) when passed de-CH", function() {
         var num = 1234.5;
         var locale = 'de-CH';
-        
+
         expect(num.toLocaleString(locale)).toBe("1'234.5");
     });
 
@@ -102,6 +102,14 @@ describe('number.toLocaleString(locale) polyfill', function() {
         var locale = 'it-IT';
 
         expect(num.toLocaleString(locale, { minimumFractionDigits: 4 })).toBe('1.234,0000');
+    });
+
+    it('should support options with minimumFractionDigits with 0 value', function() {
+        var num = 1234.1234;
+        var locale = 'it-IT';
+        var currency = 'EUR';
+
+        expect(num.toLocaleString(locale, { style: 'currency', currency: currency, minimumFractionDigits: 0 })).toBe('1.234 €');
     });
 
     it('returns a string formatted in US style (1,234.5) by default', function() {
