@@ -76,13 +76,13 @@
 
             return replaceSeparators(sNum, seperators);
         };
-        
+
         var apostrophThousDotDec = function(sNum) {
             var seperators = {
                 decimal: '.',
                 thousands: '\u0027'
             };
-            
+
             return replaceSeparators(sNum, seperators);
         };
 
@@ -252,7 +252,7 @@
 
             var sNum;
 
-            if (options && options.minimumFractionDigits) {
+            if (options && (options.minimumFractionDigits || options.minimumFractionDigits === 0)) {
                 sNum = this.toFixed(options.minimumFractionDigits);
             } else {
                 sNum = this.toString();
