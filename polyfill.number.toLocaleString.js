@@ -88,6 +88,8 @@
 
         var transformForLocale = {
             en: commaThousDotDec,
+            'en-GB': commaThousDotDec,
+            'en-US': commaThousDotDec,
             it: dotThousCommaDec,
             fr: spaceThousCommaDec,
             de: dotThousCommaDec,
@@ -96,6 +98,9 @@
             "de-CH": apostrophThousDotDec,
             "de-LI": apostrophThousDotDec,
             "de-BE": dotThousCommaDec,
+            "nl": dotThousCommaDec,
+            "nl-BE": dotThousCommaDec,
+            "nl-NL": dotThousCommaDec,
             ro: dotThousCommaDec,
             "ro-RO": dotThousCommaDec,
             hu: spaceThousCommaDec,
@@ -106,6 +111,8 @@
 
         var currencyFormatMap = {
             en: "pre",
+            'en-GB': "pre",
+            'en-US': "pre",
             it: "post",
             fr: "post",
             de: "post",
@@ -114,6 +121,9 @@
             "de-CH": "prespace",
             "de-LI": "post",
             "de-BE": "post",
+            "nl": "post",
+            "nl-BE": "post",
+            "nl-NL": "post",
             ro: "post",
             "ro-RO": "post",
             hu: "post",
