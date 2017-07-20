@@ -76,20 +76,23 @@
 
             return replaceSeparators(sNum, seperators);
         };
-        
+
         var apostrophThousDotDec = function(sNum) {
             var seperators = {
                 decimal: '.',
                 thousands: '\u0027'
             };
-            
+
             return replaceSeparators(sNum, seperators);
         };
 
         var transformForLocale = {
             en: commaThousDotDec,
+            "en-CA": commaThousDotDec,
+            "en-US": commaThousDotDec,
             it: dotThousCommaDec,
             fr: spaceThousCommaDec,
+            "fr-CA": spaceThousCommaDec,
             de: dotThousCommaDec,
             "de-DE": dotThousCommaDec,
             "de-AT": dotThousCommaDec,
@@ -106,8 +109,11 @@
 
         var currencyFormatMap = {
             en: "pre",
+            "en-CA": "pre",
+            "en-US": "pre",
             it: "post",
             fr: "post",
+            "fr-CA": "post",
             de: "post",
             "de-DE": "post",
             "de-AT": "prespace",
