@@ -42,11 +42,11 @@ describe('number.toLocaleString(locale) polyfill', function() {
 
         expect(num.toLocaleString(locale)).toBe('1.234,5');
     });
-    
+
     it("returns a string formatted in de-CH style (1'234.5) when passed de-CH", function() {
         var num = 1234.5;
         var locale = 'de-CH';
-        
+
         expect(num.toLocaleString(locale)).toBe("1'234.5");
     });
 
@@ -121,6 +121,7 @@ describe('number.toLocaleString(locale) polyfill', function() {
 
     it('returns currency properly formatted for the locale specified', function() {
         var num = 1234.56;
+        var negative_num = -1234.56;
         var style = "currency";
         var currency = "USD";
         var currencyDisplay = "symbol";
@@ -129,6 +130,11 @@ describe('number.toLocaleString(locale) polyfill', function() {
             style: style,
             currency: currency
         })).toBe("$1,234.56");
+
+        expect(negative_num.toLocaleString("en-US", {
+            style: style,
+            currency: currency
+        })).toBe("-$1,234.56");
 
         expect(num.toLocaleString("de-DE", {
             style: style,
