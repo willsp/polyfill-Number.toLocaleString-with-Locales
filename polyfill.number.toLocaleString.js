@@ -89,6 +89,7 @@
         var transformForLocale = {
             en: commaThousDotDec,
             "en-CA": commaThousDotDec,
+            "en-GB": commaThousDotDec,
             "en-US": commaThousDotDec,
             it: dotThousCommaDec,
             fr: spaceThousCommaDec,
@@ -99,6 +100,9 @@
             "de-CH": apostrophThousDotDec,
             "de-LI": apostrophThousDotDec,
             "de-BE": dotThousCommaDec,
+            "nl": dotThousCommaDec,
+            "nl-BE": dotThousCommaDec,
+            "nl-NL": dotThousCommaDec,
             ro: dotThousCommaDec,
             "ro-RO": dotThousCommaDec,
             hu: spaceThousCommaDec,
@@ -110,6 +114,7 @@
         var currencyFormatMap = {
             en: "pre",
             "en-CA": "pre",
+            "en-GB": "pre",
             "en-US": "pre",
             it: "post",
             fr: "post",
@@ -120,6 +125,9 @@
             "de-CH": "prespace",
             "de-LI": "post",
             "de-BE": "post",
+            "nl": "post",
+            "nl-BE": "post",
+            "nl-NL": "post",
             ro: "post",
             "ro-RO": "post",
             hu: "post",
@@ -258,7 +266,7 @@
 
             var sNum;
 
-            if (options && options.minimumFractionDigits) {
+            if (options && (options.minimumFractionDigits || options.minimumFractionDigits === 0)) {
                 sNum = this.toFixed(options.minimumFractionDigits);
             } else {
                 sNum = this.toString();
