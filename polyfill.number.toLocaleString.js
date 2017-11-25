@@ -29,6 +29,10 @@
 
         var renderFormat = function(template, props) {
             for (var prop in props) {
+                if (props[prop].indexOf('-') !== -1) {
+                    props[prop] = props[prop].replace('-', '');
+                    template = '-' + template;
+                }
                 template = template.replace("{{" + prop + "}}", props[prop]);
             }
 
