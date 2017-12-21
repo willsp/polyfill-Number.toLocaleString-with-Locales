@@ -1,6 +1,6 @@
 {
   "name": "number-to-locale-string",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A polyfill to add support for Number.toLocaleString with locales to browsers that don't support it.",
   "main": "polyfill.number.toLocaleString.js",
   "repository": {
