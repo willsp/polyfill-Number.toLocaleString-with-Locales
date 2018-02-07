@@ -280,7 +280,8 @@
 
             if(options && options.currency && options.style === "currency") {
                 var format = currencyFormats[mapMatch(currencyFormatMap, locale)];
-                if(options.currencyDisplay === "code") {
+                var symbol = currencySymbols[options.currency.toLowerCase()];
+                if(options.currencyDisplay === "code" || !symbol) {
                     sNum = renderFormat(format, {
                         num: sNum,
                         code: options.currency.toUpperCase()
@@ -288,7 +289,7 @@
                 } else {
                     sNum = renderFormat(format, {
                         num: sNum,
-                        code: currencySymbols[options.currency.toLowerCase()]
+                        code: symbol
                     });
                 }
             }

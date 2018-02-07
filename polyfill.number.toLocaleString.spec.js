@@ -189,4 +189,14 @@ describe('number.toLocaleString(locale) polyfill', function() {
             currency: "vnd"
         })).toBe("₫1,234.56");
     });
+
+    it('returns currency in uppercase if symbol is not found', function () {
+      var num = 1234.56;
+      var style = "currency";
+
+      expect(num.toLocaleString("de-DE", {
+        style: style,
+        currency: "xxx"
+      })).toBe("1.234,56 XXX");
+    });
 });
