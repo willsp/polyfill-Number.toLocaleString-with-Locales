@@ -268,6 +268,14 @@
             if (locale && locale.length < 2)
                 throw new RangeError("Invalid language tag: " + locale);
 
+            if (options && options.currency && !currencySymbols[options.currency.toLowerCase()]) {
+                throw new RangeError("Invalid currency code: " + options.currency);
+            }
+    
+            if (options && options.style === "currency" && !options.currency ) {
+                throw new TypeError("Currency code is required with currency style");
+            }
+
             var sNum;
 
             if (options && (options.minimumFractionDigits || options.minimumFractionDigits === 0)) {
