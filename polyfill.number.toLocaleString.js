@@ -94,6 +94,7 @@
             en: commaThousDotDec,
             'en-GB': commaThousDotDec,
             'en-US': commaThousDotDec,
+            'es-AR': dotThousCommaDec,
             it: dotThousCommaDec,
             fr: spaceThousCommaDec,
             de: dotThousCommaDec,
@@ -117,6 +118,7 @@
 
         var currencyFormatMap = {
             en: "pre",
+            'es-AR': "pre",
             'en-GB': "pre",
             'en-US': "pre",
             it: "post",
